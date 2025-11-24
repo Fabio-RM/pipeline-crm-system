@@ -23,7 +23,8 @@
     <div class="client-info">
         <strong>Cliente:</strong> {{ $proposal->lead->client->name }}<br>
         <strong>Data de Emissão:</strong> {{ date('d/m/Y') }}<br>
-        <strong>Válido até:</strong> {{ $proposal->valid_until->format('d/m/Y') }}
+        {{-- CORREÇÃO AQUI: Usando Carbon::parse para garantir que é data --}}
+        <strong>Válido até:</strong> {{ \Carbon\Carbon::parse($proposal->valid_until)->format('d/m/Y') }}
     </div>
 
     <div class="section-title">Descrição dos Serviços</div>

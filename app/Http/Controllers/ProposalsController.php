@@ -136,12 +136,11 @@ class ProposalsController extends Controller
         }
 
         try {
-            // TEMP: Comentei a geração do PDF para teste
-            // $pdf = Pdf::loadView('proposals.pdf', compact('proposal'));
-            // $pdfContent = $pdf->output();
+            $pdf = Pdf::loadView('proposals.pdf', compact('proposal'));
+            $pdfContent = $pdf->output();
 
-            // Passamos null no lugar do conteúdo do PDF
-            Mail::to($clientEmail)->send(new ProposalMail($proposal, null));
+            //Passamos null no lugar do conteúdo do PDF
+            Mail::to($clientEmail)->send(new ProposalMail($proposal, $pdfContent));
 
             $proposal->update([
                 'status' => 'Enviada',
