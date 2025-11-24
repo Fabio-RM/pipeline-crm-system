@@ -119,6 +119,8 @@
                         @break
 
                     @case(2)
+
+                        
                         <a href="{{ route('leads.proposals.create', $lead->id) }}"
                            class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                             Avançar Pipeline → Proposta
@@ -154,6 +156,10 @@
             <div class="flex flex-wrap gap-4">
 
                 @if($lead->diagnostic)
+                    <a href="{{ route('leads.diagnostics.index', ['lead_id' => $lead->id]) }}"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                        Lista de Diagnósticos
+                    </a>
                     <a href="{{ route('leads.diagnostics.show', ['lead_id' => $lead->id, 'diagnostic' => $lead->diagnostic->id]) }}"
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                         Ver Diagnóstico
@@ -161,11 +167,16 @@
                 @endif
 
                 @if($lead->proposal)
+                    <a href="{{ route('leads.proposals.index', ['lead_id' => $lead->id]) }}"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                        Lista de Propostas
+                    </a>
                     {{-- CORREÇÃO: 'diagnostic_id' -> 'proposal', e usando ID da proposta --}}
                     <a href="{{ route('leads.proposals.show', ['lead_id' => $lead->id, 'proposal' => $lead->proposal->id]) }}"
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                         Ver Proposta
                     </a>
+                    
                 @endif
 
                 @if($lead->contract)
